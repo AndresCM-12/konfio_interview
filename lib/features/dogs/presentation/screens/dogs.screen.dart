@@ -6,6 +6,10 @@ import 'package:sh_mobile/config/utils/injections.dart';
 import 'package:sh_mobile/features/dogs/presentation/bloc/dogs/dogs.bloc.dart';
 import 'package:sh_mobile/features/dogs/presentation/bloc/dogs/dogs.event.dart';
 import 'package:sh_mobile/features/dogs/presentation/bloc/dogs/dogs.state.dart';
+import 'package:sh_mobile/features/dogs/presentation/widgets/dog.widget.dart';
+import 'package:sh_mobile/shared/widgets/appbar_title.dart';
+import 'package:sh_mobile/shared/widgets/text_body.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 @RoutePage()
 class DogsScreen extends StatelessWidget {
@@ -22,39 +26,65 @@ class DogsScreen extends StatelessWidget {
             iconSize: 28.0,
             onPressed: () => context.router.back(),
           ),
-          title: const Text(Constants.appName),
+          title: const AppBarTitle(title: Constants.appName),
         ),
-        body: _buildBody(),
+        body: body(),
       ),
     );
   }
 
-  _buildBody() {
+  body() {
     return BlocBuilder<DogsRemoteBloc, DogsRemoteState>(
       builder: (context, state) {
-        if (state is DogsRemoteLoading) {
-          return const Center(child: CircularProgressIndicator());
+        if (state is DogsRemoteSuccess) {
+          return handleSuccess(state, context);
         }
 
-        if (state is DogsRemoteSuccess) {
-          final dogs = state.dogs!;
-          return ListView.builder(
-            itemCount: dogs.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(dogs[index].dogName ?? ''),
-                subtitle: Text(dogs[index].age?.toString() ?? ''),
-              );
-            },
-          );
+        if (state is DogsRemoteLoading) {
+          return handleLoading();
         }
 
         if (state is DogsRemoteFailed) {
-          return Center(child: Text(state.error!.message!));
+          return handleFailed(state);
         }
 
         return const SizedBox.shrink();
       },
     );
+  }
+
+  Widget handleSuccess(DogsRemoteSuccess state, BuildContext context) {
+    final dogs = state.dogs!;
+
+    if (dogs.isEmpty) {
+      return const Center(child: TextBody(text: "No dogs found 😭"));
+    }
+
+    return RefreshIndicator(
+      onRefresh: () async =>
+          context.read<DogsRemoteBloc>().add(const GetDogs()),
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+        itemCount: dogs.length,
+        separatorBuilder: (context, index) => const SizedBox(height: 32.0),
+        itemBuilder: (context, index) => DogWidget(dog: dogs[index]),
+      ),
+    );
+  }
+
+  Widget handleLoading() {
+    return Skeletonizer(
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+        itemCount: Constants.mockedDogs.length,
+        separatorBuilder: (context, index) => const SizedBox(height: 32.0),
+        itemBuilder: (context, index) =>
+            DogWidget(dog: Constants.mockedDogs[index]),
+      ),
+    );
+  }
+
+  Center handleFailed(DogsRemoteFailed state) {
+    return Center(child: TextBody(text: state.error!.message!));
   }
 }

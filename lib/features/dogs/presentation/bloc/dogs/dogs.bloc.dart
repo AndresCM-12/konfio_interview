@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sh_mobile/core/resources/data_state.dart';
 import 'package:sh_mobile/features/dogs/domain/use_cases/get_dogs.usecase.dart';
@@ -22,8 +20,10 @@ class DogsRemoteBloc extends Bloc<DogsRemoteEvent, DogsRemoteState> {
   }
 
   void onGetDogs(GetDogs event, Emitter<DogsRemoteState> emit) async {
+    emit(const DogsRemoteLoading());
+
     final localDogs = await _getLocalDogsUseCase.call();
-    log('localDogs: $localDogs');
+
     //We make sure that we have data in the local database
     if (localDogs.isNotEmpty) {
       emit(DogsRemoteSuccess(dogs: localDogs));
