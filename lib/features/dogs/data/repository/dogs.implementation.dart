@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 
@@ -35,8 +33,6 @@ class DogsImplementation implements DogsRepository {
 
       final data = response.data as List<dynamic>;
       final dogs = data.map((element) => DogModel.fromJson(element)).toList();
-      log("Data: ${response.data.runtimeType}");
-      log("Dogs: $dogs");
 
       return DataSuccess(data: dogs);
     } on DioException catch (e) {

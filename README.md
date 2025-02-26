@@ -10,7 +10,7 @@ Make sure to have the latest version of Flutter installed on your machine. 3.29.
 ```bash
 flutter pub get
 ```
-3. Generate the routes:
+3. Generate the routes and Database files (If needed):
 ```bash
 flutter pub run build_runner build
 ```
