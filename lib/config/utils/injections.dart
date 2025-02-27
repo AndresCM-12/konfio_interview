@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sh_mobile/config/router/routes.dart';
 import 'package:sh_mobile/config/utils/constant/constants.dart';
@@ -38,4 +39,6 @@ Future<void> init() async {
   sl.registerSingleton<GetLocalDogsUseCase>(GetLocalDogsUseCase(sl()));
   // Bloc
   sl.registerFactory<DogsRemoteBloc>(() => DogsRemoteBloc(sl(), sl(), sl()));
+
+  FlutterNativeSplash.remove();
 }

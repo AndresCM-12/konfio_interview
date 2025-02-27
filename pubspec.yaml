@@ -1,5 +1,5 @@
 name: sh_mobile
-description: "A new Flutter project."
+description: "Konfio interview app."
 publish_to: 'none'
 version: 0.1.0
 
@@ -17,6 +17,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.5
   get_it: ^8.0.3
   google_fonts: ^6.2.1
   mocktail: ^1.0.4
@@ -28,6 +30,30 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.15
   drift_dev: ^2.25.2
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/icon/puppy.jpg
+  android: true
+  ios: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/puppy.jpg"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/icon/puppy.jpg"
+    background_color: "#FFFFFF"
+    theme_color: "#FFFFFF"
+  windows:
+    generate: true
+    image_path: "assets/icon/puppy.jpg"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/icon/puppy.jpg"
 
 flutter:
   uses-material-design: true
