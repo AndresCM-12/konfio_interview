@@ -8,7 +8,7 @@ abstract class DogsRemoteState extends Equatable {
   const DogsRemoteState({this.dogs, this.error});
 
   @override
-  List<Object> get props => [dogs!, error!];
+  List<Object?> get props => [dogs, error];
 }
 
 class DogsRemoteLoading extends DogsRemoteState {
