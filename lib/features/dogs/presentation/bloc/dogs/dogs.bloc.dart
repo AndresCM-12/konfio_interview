@@ -22,12 +22,14 @@ class DogsRemoteBloc extends Bloc<DogsRemoteEvent, DogsRemoteState> {
   void onGetDogs(GetDogs event, Emitter<DogsRemoteState> emit) async {
     emit(const DogsRemoteLoading());
 
-    final localDogs = await _getLocalDogsUseCase.call();
+    if (!event.forceRefresh) {
+      final localDogs = await _getLocalDogsUseCase.call();
 
-    //We make sure that we have data in the local database
-    if (localDogs.isNotEmpty) {
-      emit(DogsRemoteSuccess(dogs: localDogs));
-      return;
+      //We make sure that we have data in the local database
+      if (localDogs.isNotEmpty) {
+        emit(DogsRemoteSuccess(dogs: localDogs));
+        return;
+      }
     }
 
     ///If we don't have data in the local database, we fetch it from the remote server

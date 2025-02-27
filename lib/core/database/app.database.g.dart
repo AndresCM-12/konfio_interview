@@ -34,7 +34,9 @@ class $DogTableTable extends DogTable
   @override
   late final GeneratedColumn<int> age = GeneratedColumn<int>(
       'age', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+      type: DriftSqlType.int,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
   static const VerificationMeta _imageMeta = const VerificationMeta('image');
   @override
   late final GeneratedColumn<String> image = GeneratedColumn<String>(

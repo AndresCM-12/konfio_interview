@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sh_mobile/config/utils/constant/constants.dart';
 
 class SpanBody extends StatelessWidget {
   final String text;
@@ -12,7 +13,7 @@ class SpanBody extends StatelessWidget {
         fontSize: 14.0,
         fontWeight: FontWeight.w600,
         height: 1.2,
-        color: Color(0xFF333333),
+        color: Color(Constants.primaryFontColor),
         fontStyle: FontStyle.normal,
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sh_mobile/config/utils/constant/constants.dart';
 
 class TextBody extends StatelessWidget {
   final String text;
@@ -19,7 +20,7 @@ class TextBody extends StatelessWidget {
         fontSize: 14.0,
         fontWeight: FontWeight.w500,
         height: 1.2,
-        color: Color(0xFF666666),
+        color: Color(Constants.secondaryFontColor),
         fontStyle: FontStyle.normal,
       ),
     );

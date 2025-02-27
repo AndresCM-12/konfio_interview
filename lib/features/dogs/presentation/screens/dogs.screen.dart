@@ -20,10 +20,15 @@ class DogsScreen extends StatelessWidget {
     return BlocProvider<DogsRemoteBloc>(
       create: (context) => sl()..add(const GetDogs()),
       child: Scaffold(
+        backgroundColor: const Color(Constants.backgroundColor),
         appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: const Color(Constants.backgroundColor),
+          elevation: 0.0,
           leading: IconButton(
             icon: const Icon(Icons.chevron_left),
-            iconSize: 28.0,
+            iconSize: 32.0,
+            color: const Color(Constants.secondaryFontColor),
             onPressed: () => context.router.back(),
           ),
           title: const AppBarTitle(title: Constants.appName),
@@ -62,7 +67,7 @@ class DogsScreen extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: () async =>
-          context.read<DogsRemoteBloc>().add(const GetDogs()),
+          context.read<DogsRemoteBloc>().add(const GetDogs(forceRefresh: true)),
       child: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
         itemCount: dogs.length,

@@ -50,8 +50,15 @@ class DogWidget extends StatelessWidget {
     return Expanded(
       child: Container(
         height: 180,
-        color: Colors.white,
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(
+            top: 16.0, left: 24.0, right: 12.0, bottom: 16.0),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(12.0),
+            bottomRight: Radius.circular(12.0),
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,

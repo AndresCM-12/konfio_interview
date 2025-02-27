@@ -3,7 +3,7 @@ import 'package:drift/drift.dart';
 
 import 'package:sh_mobile/config/utils/constant/constants.dart';
 import 'package:sh_mobile/core/resources/data_state.dart';
-import 'package:sh_mobile/features/dogs/data/data_sources/local/app.database.dart';
+import 'package:sh_mobile/core/database/app.database.dart';
 import 'package:sh_mobile/features/dogs/data/data_sources/remote/dogs.api.service.dart';
 import 'package:sh_mobile/features/dogs/data/models/dogs.model.dart';
 import 'package:sh_mobile/features/dogs/domain/entities/dog.entity.dart';
@@ -71,7 +71,11 @@ class DogsImplementation implements DogsRepository {
         .toList();
 
     await _appDatabase.batch((batch) {
-      batch.insertAll(_appDatabase.dogTable, dogsCompanionList);
+      batch.insertAll(
+        _appDatabase.dogTable,
+        dogsCompanionList,
+        mode: InsertMode.insertOrReplace,
+      );
     });
   }
 }

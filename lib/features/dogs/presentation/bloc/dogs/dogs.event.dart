@@ -3,5 +3,6 @@ abstract class DogsRemoteEvent {
 }
 
 class GetDogs extends DogsRemoteEvent {
-  const GetDogs();
+  final bool forceRefresh;
+  const GetDogs({this.forceRefresh = false});
 }

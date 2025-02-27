@@ -6,6 +6,10 @@ class Constants {
   static const String baseUrl = 'https://jsonblob.com';
   static const String dogsRoute = '/api/1151549092634943488';
 
+  static const int primaryFontColor = 0xFF333333;
+  static const int secondaryFontColor = 0xFF666666;
+  static const int backgroundColor = 0xFFF8F8F8;
+
   static const List<DogEntity> mockedDogs = [
     DogEntity(
       dogName: 'Rex',

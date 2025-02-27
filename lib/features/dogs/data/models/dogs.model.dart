@@ -1,4 +1,4 @@
-import 'package:sh_mobile/features/dogs/data/data_sources/local/app.database.dart';
+import 'package:sh_mobile/core/database/app.database.dart';
 import 'package:sh_mobile/features/dogs/domain/entities/dog.entity.dart';
 
 class DogModel extends DogEntity {

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sh_mobile/config/router/routes.dart';
 import 'package:sh_mobile/config/utils/constant/constants.dart';
-import 'package:sh_mobile/features/dogs/data/data_sources/local/app.database.dart';
+import 'package:sh_mobile/core/database/app.database.dart';
 import 'package:sh_mobile/features/dogs/data/data_sources/remote/dogs.api.service.dart';
 import 'package:sh_mobile/features/dogs/data/repository/dogs.implementation.dart';
 import 'package:sh_mobile/features/dogs/domain/repository/dogs.repository.dart';
