@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:sh_mobile/core/resources/data_state.dart';
 import 'package:sh_mobile/features/dogs/domain/entities/dog.entity.dart';
-import 'package:sh_mobile/features/dogs/domain/repository/dogs.repository.dart';
 import 'package:sh_mobile/features/dogs/domain/use_cases/get_dogs.usecase.dart';
 import 'package:sh_mobile/features/dogs/domain/use_cases/get_local_dogs.usecase.dart';
 import 'package:sh_mobile/features/dogs/domain/use_cases/save_local_dogs.usecase.dart';
